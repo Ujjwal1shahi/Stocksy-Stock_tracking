@@ -59,9 +59,10 @@ export const CONDITION_OPTIONS = [
 
 // TradingView Charts
 export const MARKET_OVERVIEW_WIDGET_CONFIG = {
-    colorTheme: 'dark', // dark mode
+    colorTheme: "dark",
+  backgroundColor: "#141414",
+  locale: "en",
     dateRange: '12M', // last 12 months
-    locale: 'en', // language
     largeChartUrl: '', // link to a large chart if needed
     isTransparent: true, // makes background transparent
     showFloatingTooltip: true, // show tooltip on hover
@@ -347,9 +348,19 @@ export const POPULAR_STOCK_SYMBOLS = [
 
 // ── TradingView Widget Script URLs ──────────────────────────────────────────
 export const TV_MARKET_OVERVIEW_SCRIPT =
-  'https://widgets.tradingview-widget.com/w/en/tv-market-overview.js';
+  "https://widgets.tradingview-widget.com/w/en/tv-market-overview.js";
 
-// ── TradingView Market Overview Widget ──────────────────────────────────────
+export const STOCK_HEATMAP =
+  "https://s3.tradingview.com/external-embedding/embed-widget-stock-heatmap.js";
+
+export const TOP_STORIES =
+  "https://widgets.tradingview-widget.com/w/en/tv-news-feed.js";
+
+export const MARKET_QUOTES =
+  "https://widgets.tradingview-widget.com/w/en/tv-market-data.js";
+
+
+  // ── TradingView Market Overview Widget ──────────────────────────────────────
 // Symbol sectors for the <tv-market-overview> web component.
 // Edit these arrays to change which symbols appear in each section.
 export const MARKET_OVERVIEW_SECTORS = [

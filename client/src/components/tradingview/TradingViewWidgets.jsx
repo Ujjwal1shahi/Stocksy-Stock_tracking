@@ -1,31 +1,42 @@
+import { memo } from "react";
+import useTradingViewWidget from "../../hooks/useTradingViewWidget";
 
-import { memo } from 'react';
-import useTradingViewWidget from '../../hooks/useTradingViewWidget';
-
-function TradingViewWidget({
+/**
+ * Reusable TradingView widget renderer.
+ *
+ * For web components, pass renderMode="web-component" and elementName.
+ * For classic iframe/script embeds, pass renderMode="script".
+ */
+function TradingViewWidgets({
   title,
   scriptUrl,
-  config,
-  className = '',
+  config = {},
+  sectors,
+  renderMode = "script",
+  elementName,
+  className = "",
   height = 600,
+  titleClassName = "text-base font-semibold text-gray-300 px-4 pt-4 pb-2",
 }) {
-  const containerRef = useTradingViewWidget(scriptUrl, config, height);
+  const containerRef = useTradingViewWidget({
+    scriptUrl,
+    config,
+    sectors,
+    height,
+    renderMode,
+    elementName,
+  });
 
   return (
     <section className={`block w-full ${className}`}>
-      {title && (
-        <h2 className="text-base font-semibold text-gray-300 px-4 pt-4 pb-2">
-          {title}
-        </h2>
-      )}
-
+      {title && <h2 className={titleClassName}>{title}</h2>}
       <div
-        className="tradingview-widget-container w-full block"
         ref={containerRef}
-        style={{ width: '100%', height: `${height}px`, display: 'block' }}
+        className="w-full"
+        style={{ width: "100%", minHeight: `${height}px` }}
       />
     </section>
   );
 }
 
-export default memo(TradingViewWidget);
+export default memo(TradingViewWidgets);
